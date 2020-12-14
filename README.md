@@ -27,5 +27,13 @@ LevelDB will let only one process to access the database at a given point of tim
 ```
 
 ## REST Paths that will be available upon running ./leveldb_rest config.json
-|PATH|Example Payload|Response|
-||
+
+There are five key requests available for each database defined in the configuration file. They should be sufficient to interact with leveldb.
+
+| TYPE | PATH| Example Payload | Response(200)|
+|----|-----------|-----------|--------------|
+|GET|/dbs/{db}/{key}|N/A|{ "value" : "v3"}|
+|PUT|/dbs/{db}/|{ "data" : [ { "key" : "thiskey1", "value" :"thisvalue1" }, { "key" : "thiskey2", "value" :"thisvalue2" } ] } | {"status": "success"} |
+|DELETE|/dbs/{db}/{key}|N/A|{"status": "success"}|
+|POST|/dbs/{db}/|{"keys": ["thiskey1", "thiskey2"]}| {"data" : [{"key": "thiskey1", "value":"thisvalue1"},{"key": "thiskey2","value":"thisvalue2"}]} |
+|PATCH|/dbs/{db}/{key}|{"value": "new_value"}|{"status": "success"}|
