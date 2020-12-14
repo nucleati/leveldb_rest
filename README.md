@@ -82,3 +82,22 @@ To run the built container use following. Make sure to change the docker image i
 ```
 docker run -d -p 16010:16010 --volume $PWD/db:/db --volume $PWD/.bash_history:/root/.bash_history --volume $PWD/config:/config --volume $PWD/log:/log/ 117696becf2e
 ```
+
+## docker-compose.yml
+
+Example docker-compose file to run along other containers.
+
+```
+version: '3.0'
+services:
+  leveldb_rest:
+    image: 117696becf2e
+    command: /leveldb_rest/leveldb_rest /config/config.json
+    ports:
+    - "16010:16010"
+    volumes:
+    - ./db:/db
+    - ./config:/config
+    - ./log:/log
+    
+```
